@@ -1,0 +1,35 @@
+<h2 app-highlight [myColor]="'yellow'"> {{ user.firstName }} {{ user.lastName }}</h2>
+
+<p *ngIf="user.isWorking; else elseTemplate">Income : <span [innerHTML]="user.income"></span></p>
+
+<!-- <p *appUnless="user.isWorking">Income : <span [innerHTML]="user.income"></span></p> -->
+
+<!-- <ng-template [ngIf]="user.isWorking">
+  <p>Income : <span [innerHTML]="user.income"></span></p>
+</ng-template> -->
+
+<!-- <p [ngClass]="['border', 'feature']">Date of Birth : {{ user.dob }}</p> -->
+<!-- <p [ngClass]="{'border' : true, 'feature' : false}">Date of Birth : {{ user.dob }}</p> -->
+<p [ngClass]="myClasses">Date of Birth : {{ user.dob }}
+  <button class="btn btn-default btn-sm" (click)="onToggle()">
+    Toggle
+  </button>
+</p>
+
+
+<em>Total Votes : {{ user.vote }}
+  <input type="number" [value]="user.vote" (change)="user.vote = $event.target.value">
+  <input type="text" [(ngModel)]="user.vote">
+  <!-- <input type="text" [ngModel]="user.vote" (ngModelChange)=""> -->
+</em>
+
+<ng-template #elseTemplate>
+  <p>{{ user.firstName }} is not working now!</p>
+</ng-template>
+
+<!-- <div [ngSwitch]="conditionExpression" >
+  <div *ngSwitchCase="" ></div>
+  <div *ngSwitchCase="" ></div>
+  <div *ngSwitchCase="" ></div>
+  <div *ngSwitchDefault></div>
+</div> -->

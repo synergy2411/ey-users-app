@@ -1,0 +1,33 @@
+<div class="container">
+
+    <ng-content select="header"></ng-content>
+
+    <h1 class="text-center">{{ title }}</h1>
+
+    <ul class="list-unstyled">
+        <li class="well" *ngFor="let user of users; index as i; even as isEven;">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <p>Position : {{ i }}</p>
+                    <p>Is this Even? : {{ isEven }}</p>
+                    <app-user-img 
+                        [xyz]="user"
+                        (childEvent) = "moreInfo($event)"></app-user-img>
+
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9">
+                   
+                    <ng-content select = ".section"></ng-content>
+                   
+                    <app-user-info [user]="user">
+                        
+                    </app-user-info>
+
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <ng-content select="footer"></ng-content>
+
+</div>
