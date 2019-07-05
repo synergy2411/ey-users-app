@@ -10,6 +10,9 @@ import { HighLightDirective } from './directives/highlight.directives';
 import { UnlessDirective } from './directives/unless.directive';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { PipeDemoComponent } from './pipe-demo/pipe-demo.component';
+import { CountryCodePipe } from './pipes/country-code.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
@@ -22,7 +25,10 @@ import { LoginComponent } from './auth/login/login.component';
     HighLightDirective,
     UnlessDirective,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PipeDemoComponent,
+    CountryCodePipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

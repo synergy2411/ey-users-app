@@ -22,10 +22,14 @@
     
       <div [hidden] = "password.untouched || password.valid">
         Some problem with password...
-        <div [hidden] = "!password.hasErrro('required')">
+        <div [hidden] = "!password.hasError('required')">
           <p class="text-danger">Password is mandatory.</p>
         </div>
         
+        <div [hidden]="!password.hasError('hasExclamation')">
+          <p class="text-danger">Password must have exclamation mark.</p>
+        </div>
+
       </div>
 
     </div>

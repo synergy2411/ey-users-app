@@ -14,7 +14,8 @@ export class LoginComponent{
   ]);
   password = new FormControl("", [
     Validators.required,
-    Validators.minLength(6)
+    Validators.minLength(6),
+    this.hasExclamationMark
   ]);
   loginForm : FormGroup;
 
@@ -23,6 +24,11 @@ export class LoginComponent{
       username : this.username,
       password : this.password
     })
+  }
+
+  hasExclamationMark(input : FormControl){
+    const haveExclamation = input.value.indexOf("!") >= 0;
+    return haveExclamation ? null : { hasExclamation : true }
   }
 
   onLogin(){
