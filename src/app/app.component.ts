@@ -1,7 +1,10 @@
+import { TestService } from './services/test.service';
+import { CounterService } from './lazy/services/counter.service';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +14,20 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit{
   title = 'The Users App';
   
+  htmlSnippets = "Template : <script>alert('Hello')</script>";
+
+  jsCode : string= "javascript:alert('Hello!')"
+  safeCode : any;
   constructor(
     public dataService : DataService,
-    public authService : AuthService){}
+    public authService : AuthService,
+    private sanitize : DomSanitizer,
+    private cdRef : ChangeDetectorRef,
+    public counterService : CounterService,
+    public test : TestService){
+      this.safeCode = this.sanitize.bypassSecurityTrustUrl(this.jsCode);
+      // this.cdRef.detach()
+    }
 
   ngOnInit(){
     firebase.initializeApp({
@@ -24,6 +38,8 @@ export class AppComponent implements OnInit{
 
   onIncrease(){
     this.dataService.counter++;
+    this.counterService.counter++;
+    this.test.testCounter++;
   }
 
   onLogout(){

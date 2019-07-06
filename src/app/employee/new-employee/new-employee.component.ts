@@ -1,3 +1,4 @@
+import { CounterService } from './../../lazy/services/counter.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewEmployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public cs : CounterService) { }
 
+  onIncrease(){
+    this.cs.counter++;
+  }
   ngOnInit() {
   }
 

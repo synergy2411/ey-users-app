@@ -52,6 +52,20 @@
 <hr>
 <br>
 
+
+<h3> Counter in App : {{ counterService.counter }} </h3>
+<h3> Test Counter in App : {{ test.testCounter }} </h3>
+<button class="btn btn-default" (click) = "onIncrease()">Increase</button>
+
+
+<!-- 
+<a [href]="jsCode">Click 1</a>
+<a [href]="safeCode"> Click 2</a> -->
+<!-- 
+HTML Snippets : {{ htmlSnippets }}
+ <br>
+SPAN : <span [innerHTML] = "htmlSnippets"></span> -->
+
 <div class="container">
     <app-new-employee></app-new-employee>
 </div>

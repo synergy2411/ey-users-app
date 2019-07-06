@@ -1,3 +1,4 @@
+import { CounterService } from './lazy/services/counter.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -6,7 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import {EmployeeModule } from './employee/employee.module';
-
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
@@ -28,6 +29,7 @@ import { LoginGaurdService } from './services/login-gaurd.service';
 import { ProductComponent } from './product/product.component';
 import { OverviewComponent } from './product/overview/overview.component';
 import { SpecificationComponent } from './product/specification/specification.component';
+import { TestService } from './services/test.service';
 
 
 @NgModule({
@@ -68,7 +70,7 @@ import { SpecificationComponent } from './product/specification/specification.co
       useClass : LoggerInterceptorService,
       multi : true
     },
-    LoginGaurdService
+    LoginGaurdService, CounterService
   ],
   bootstrap: [AppComponent]
 })

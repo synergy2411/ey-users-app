@@ -1,3 +1,5 @@
+import { TestService } from './../../services/test.service';
+import { CounterService } from './../services/counter.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IAmLazyComponent implements OnInit {
 
-  constructor() { }
+  constructor(public counterService : CounterService,
+          public test : TestService) { }
+
+  onIncrease(){
+    this.counterService.counter++;
+    this.test.testCounter++;
+  }
 
   ngOnInit() {
   }
