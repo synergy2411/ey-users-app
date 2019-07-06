@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -19,7 +20,9 @@ export class LoginComponent{
   ]);
   loginForm : FormGroup;
 
-  constructor(private fb : FormBuilder){
+  constructor(
+      private fb : FormBuilder,
+      private authService : AuthService){
     this.loginForm = this.fb.group({
       username : this.username,
       password : this.password
@@ -34,6 +37,10 @@ export class LoginComponent{
   onLogin(){
     console.log("Username : ", this.loginForm.value.username);
     console.log("Password : ", this.loginForm.value.password);
+    this.authService.onLogin(
+        this.loginForm.value.username,
+        this.loginForm.value.password
+        )
   }
 
 }

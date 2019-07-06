@@ -1,5 +1,10 @@
 <div class="container">
 
+    <!-- {{ users | json }} -->
+
+    <h3>Counter in Users : {{ dataService.counter }}</h3>
+    <button class="btn btn-default" (click)="onIncrease()">Increase</button>
+
     <ng-content select="header"></ng-content>
 
     <h1 class="text-center">{{ title }}</h1>

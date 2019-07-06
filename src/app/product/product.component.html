@@ -1,0 +1,20 @@
+<h2>
+  Product Component Loaded!
+</h2>
+
+
+<div class="row">
+  <div class="col-xs-12 col-sm-2 col-md-2">
+      <ul class="list-unstyled">
+          <li><a [routerLink]="['overview']">Overview without ID</a></li>
+          <li><a [routerLink]="['overview', 5, 'iPhoneX']">Overview with ID</a></li>
+          <li>
+            <a [routerLink]="['spec']"
+              [queryParams] = "{'qty' : 99, 'price' : 299}">Specification</a></li>
+        </ul>
+  </div>
+  <div class="col-xs-12 col-sm-10 col-md-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

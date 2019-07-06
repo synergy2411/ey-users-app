@@ -4,17 +4,58 @@
 
 <!-- <input type="text" [(ngModel)] = "title"> -->
 
-<!-- <app-register></app-register> -->
-
 <!-- <app-login></app-login> -->
 
-<app-pipe-demo></app-pipe-demo>
+<!-- <app-register></app-register> -->
+
+
+
+<!-- <app-pipe-demo></app-pipe-demo> -->
+<!-- 
+<h3>Counter in App : {{ dataService.counter }}</h3>
+<button class="btn btn-default" (click)="onIncrease()">Increase</button> -->
+
+
+<!-- <app-observable-demo></app-observable-demo> -->
+
+
+<!-- 
+<div *ngIf="authService.isAuthenticated()"> -->
+
+<!-- <app-users [title]="title">
+        <header>header Info</header>
+        <main class="section">Main Info</main>
+        <footer>Footer Info</footer>
+    </app-users> -->
+
+<!-- </div> -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            <ul class="list-unstyled nav navbar-nav navbar-default">
+                <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['login']">Login</a></li>
+                <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['register']">Register</a></li>
+                <li><a [routerLink]="['pipe']">Pipe</a></li>
+                <li><a [routerLink]="['observable']">Observable</a></li>
+                <li><a [routerLink]="['users']">Users</a></li>
+                <li><a [routerLink]="['product']">Product</a></li>
+                <li><a [routerLink]="['employee']">Employee</a></li>
+                <li><a [routerLink]="['lazy']">Lazy</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3" *ngIf="authService.isAuthenticated()">
+            <button class="btn btn-danger btn-block" (click)="onLogout()">Logout</button>
+        </div>
+    </div>
+</div>
+
 <hr>
 <br>
 
-<app-users [title]="title">
-    <header>header Info</header>
-    <main class="section">Main Info</main>
-    <footer>Footer Info</footer>
-</app-users>
+<div class="container">
+    <app-new-employee></app-new-employee>
+</div>
 
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

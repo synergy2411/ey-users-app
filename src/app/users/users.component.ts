@@ -1,10 +1,12 @@
-import { USER_DATA } from './../models/mocks';
+import { DataService } from './../services/data.service';
 import { IUser } from './../models/user';
-import { Component, 
-    Input, 
+
+import {
+    Component,
+    Input,
     ViewEncapsulation,
-    OnChanges, OnInit, DoCheck, AfterContentInit, 
-    AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, 
+    OnChanges, OnInit, DoCheck, AfterContentInit,
+    AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy,
     SimpleChanges,
     ChangeDetectionStrategy,
 } from '@angular/core';
@@ -13,9 +15,10 @@ import { Component,
 @Component({
     selector: "app-users",
     templateUrl: "./users.component.html",
-    styleUrls : [`./users.component.css`],
+    styleUrls: [`./users.component.css`],
     encapsulation: ViewEncapsulation.Emulated,
-    changeDetection : ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    providers: [DataService]
 })
 
 export class UsersComponent
@@ -25,22 +28,43 @@ export class UsersComponent
 
     @Input('title') title: string;
 
-    users : IUser[];
+    users: IUser[];
 
-    constructor(){}
+    constructor(public dataService: DataService) { }
 
     moreInfo(usr: IUser) {
         alert(`${usr.firstName} is working with ${usr.company}!
         Votes : ${usr.vote}`)
     }
 
+    onIncrease() {
+        this.dataService.counter++;
+    }
+
+    ngOnInit() {
+        // - ACCESSING DATA FROM REST API
+
+        this.dataService.getApiData()
+        .subscribe(response => this.users = response);
+
+        // this.users = this.dataService.getData();
+
+        // - ACCESSING MODEL LOCALY
+        // this.dataService.getJsonData()
+        //     .subscribe(
+        //         // response => this.users =  <IUser[]>response['userdata'],
+        //         response => this.users = response,
+        //         err => console.log(err),
+        //         () => { console.log("Completed") }
+        //     );
+    }
+
+
+
+
     // ngOnChanges(changes : SimpleChanges){
     //     console.log("ngOnChanges", changes)
     // }
-    ngOnInit(){
-        // console.log("ngOnInit");
-        this.users = USER_DATA;
-    }
     // ngDoCheck(){console.log("ngDoCheck")}
     // ngAfterContentInit(){console.log("ngAfterContentInit")}
     // ngAfterContentChecked(){console.log("ngAfterContentChecked")}
